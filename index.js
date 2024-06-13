@@ -15,16 +15,16 @@ app.get('/', (req, res) => {
 
 // Login de usuario donde se genera el JWT
 app.post('/login', (req, res) => {
-  const { usuario, password } = req.body
-  console.log(`Datos recibidos: usuario: ${usuario}, password: ${password}`)
+  const { username, password } = req.body
+  console.log(`Datos recibidos: usuario: ${username}, password: ${password}`)
   // Autenticacion del usuario
   const user = usuarios.find(
-    (u) => u.username === usuario && u.password === password
+    (u) => u.username === username && u.password === password
   )
   if (!user) {
     return res.status(401).send({ error: 'Credenciales invalidas' })
   } else {
-    const token = jwt.sign({ usuario }, secretKey, { expiresIn: '1h' })
+    const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' })
     return res.json({ token })
   }
 })
