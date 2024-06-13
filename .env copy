@@ -1,0 +1,2 @@
+PORT = 3008
+SECRET_KEY = set_your_own_key
